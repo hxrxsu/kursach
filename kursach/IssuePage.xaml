@@ -1,0 +1,55 @@
+﻿<Page x:Class="kursach.IssuePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kursach"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="QualityPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#004B6136" Offset="0.084"/>
+                <GradientStop Offset="0.884" Color="#FFA06A1C"/>
+                <GradientStop Color="#054C6135" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Grid.Column="1" Content="Ввод проблем" Foreground="White" FontSize="20" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40"/>
+        <TextBox x:Name="TB_IssueDesc" GotFocus="TB_IssueDesc_GotFocus" Grid.Column="1" Grid.Row="1" Background="Transparent" Foreground="White" TextWrapping="Wrap" Text="Поле для ввода проблемы" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" Height="47"/>
+        <ListBox x:Name="LB_Issues" Grid.Column="1" Margin="0,112,0,48" Grid.RowSpan="2" Foreground="White" Background="Transparent">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Description}" FontSize="20" Margin="5" />
+                        <Button Content="Подробнее" Click="Button_Details" Tag="{Binding IssueId}" Margin="5" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Найти решение" Background="Transparent" Foreground="White" Grid.Column="1" Click="Button_Click"/>
+            <Label Grid.Column="1" Content="Нет решения?" FontSize="10" Foreground="White" Grid.Row="1" HorizontalContentAlignment="Center" MouseDown="Label_MouseDown"/>
+        </Grid>
+    </Grid>
+</Page>
