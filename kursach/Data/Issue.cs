@@ -10,5 +10,7 @@ namespace kursach.Data
     {
         public int IssueId { get; set; }
         public string Description { get; set; }
+
+        public Solution _solutions { get; set; }
     }
 }

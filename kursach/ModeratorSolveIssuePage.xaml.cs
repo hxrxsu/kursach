@@ -57,7 +57,7 @@ namespace kursach
                     }
 
                     var _selectedIssueInDB = db.Issues.FirstOrDefault(i => i.IssueId == selectedIssueId);
-                    Solution _solution = new Solution { Description = TB_SolvedIssue.Text.ToLower(), _Issue = _selectedIssueInDB};
+                    Solution _solution = new Solution { Description = TB_SolvedIssue.Text.ToLower(), _Issue = _selectedIssueInDB, IssueId = _selectedIssueInDB.IssueId};
 
                     var notification = new NotificationContent
                     {

@@ -10,10 +10,6 @@
 
   <ItemGroup>
     <None Remove="src\auth.png" />
-    <None Remove="src\background.jpg" />
-    <None Remove="src\logout.png" />
-    <None Remove="src\uploadcertif.png" />
-    <None Remove="src\user.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,11 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="src\moderator.png" />
     <Resource Include="src\auth.png" />
-    <Resource Include="src\background.jpg" />
-    <Resource Include="src\logout.png" />
-    <Resource Include="src\uploadcertif.png" />
-    <Resource Include="src\user.png" />
   </ItemGroup>
 
 </Project>

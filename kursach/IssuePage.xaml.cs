@@ -74,12 +74,11 @@ namespace kursach
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var _filteredIssues = db.SolvedIssues.Where(i => i._Issue.Description.Contains(TB_IssueDesc.Text.ToLower())).ToList();
-
-
-                //var _filteredIssues = db.Issues
-                //       .Where(i => i.Description.Contains(TB_IssueDesc.Text.ToLower()))
-                //       .ToList();
+                var _filteredIssues = db.Issues
+                                         .Where(i => i.Description
+                                         .ToLower().
+                                         Contains(TB_IssueDesc.Text))
+                                         .ToList();
 
                 LB_Issues.ItemsSource = _filteredIssues;
             }
@@ -91,20 +90,25 @@ namespace kursach
             {
                 if (LB_Issues.SelectedItem != null)
                 {
-                    var selectedsolutions = LB_Issues.SelectedItem as Solution;
-                    if (selectedsolutions != null)
+                    var selectedIssue = LB_Issues.SelectedItem as Issue;
+                    if (selectedIssue != null)
                     {
-                        selectedSolutionId = selectedsolutions.SolutionId;
+                        int selectedIssueId = selectedIssue.IssueId;
 
-                        var _selectedSolutionDesc = db.SolvedIssues.FirstOrDefault(s => s.SolutionId == selectedSolutionId);
+                        var selectedSolution = db.SolvedIssues
+                                                .Include(s => s._Issue) 
+                                                .FirstOrDefault(s => s.IssueId == selectedIssueId);
 
-                        var notification = new NotificationContent
+                        if (selectedSolution != null)
                         {
-                            Title = "Уведомление",
-                            Message = $"{_selectedSolutionDesc.Description}",
-                            Type = NotificationType.Information
-                        };
-                        notificationManager.Show(notification);
+                            var notification = new NotificationContent
+                            {
+                                Title = "Уведомление",
+                                Message = $"Решение: {selectedSolution.Description}",
+                                Type = NotificationType.Information
+                            };
+                            notificationManager.Show(notification);
+                        }
                     }
                 }
             }
